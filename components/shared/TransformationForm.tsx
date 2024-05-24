@@ -23,9 +23,9 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { aspectRatioOptions, defaultValues, transformationTypes } from "@/constants"
+import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from "@/constants"
 import { CustomField } from "./CustomField"
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
 import { updateCredits } from "@/lib/actions/user.actions"
 import MediaUploader from "./MediaUploader"
@@ -33,6 +33,7 @@ import TransformedImage from "./TransformedImage"
 import { getCldImageUrl } from "next-cloudinary"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import { useRouter } from "next/navigation"
+import { InsufficientCreditsModel } from "./InsufficientCreditsModel"
 
 export const formSchema = z.object({
     title: z.string(),
@@ -70,6 +71,7 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
  
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // console.log(values)
     setIsSubmitting(true)  
 
     if(data || image){
@@ -123,8 +125,6 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
                     path:`/transformations/${data._id}`
                 })
                 if (updatedImage){
-                    form.reset()
-                    setImage(data)
                     router.push(`/transformations/${updatedImage._id}`)
                 } 
                 
@@ -160,11 +160,11 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
                     value
                 }
             }))
-            return onChangeField(value)
-        },1000)
+        },1000)()
+
+        return onChangeField(value)
   }
 
-//   TODO: update credit fee  to something else 
   const onTransformHandler = async () => {
     setIsTransforming(true)
 
@@ -175,13 +175,20 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
     setNewTransformation(null)
 
     startTransition(async () => {
-        await updateCredits(userId, -1)  
+        await updateCredits(userId, creditFee)  
     })
   }
+
+  useEffect(()=>{
+    if(image && (type === 'restore' || type === 'removeBackground')){
+        setNewTransformation(transformationType.config)
+    }
+  }, [image, transformationType.config, type])
 
   return (
     <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModel />}
             <CustomField 
                 control={form.control}
                 name="title"
@@ -223,7 +230,7 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
                         type === 'remove' ? "Object to remove" : "Object to recolor"
                     }
                     className="w-full"
-                    render={(({field}) => (
+                    render={({field}) => (
                         <Input
                         value = {field.value} 
                         className="input-field"
@@ -231,7 +238,7 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
                             'prompt', e.target.value, type, field.onChange
                         )}/>
 
-                    ))}
+                    )}
                 />
                 {type === 'recolor' && (
                     <CustomField 
