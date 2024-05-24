@@ -32,7 +32,7 @@ export const Collection = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  
   // PAGINATION HANDLER
   const onPageChange = (action: string) => {
     const pageValue = action === "next" ? Number(page) + 1 : Number(page) - 1;
@@ -53,10 +53,10 @@ export const Collection = ({
         {hasSearch && <Search />}
       </div>
 
-      {Array.isArray(images) && images.length > 0 ? (
+      {images.length > 0 ? (
         <ul className="collection-list">
           {images.map((image) => (
-            <Card image={image} key={image._id} />
+            <Card image={image} key={String(image._id)}/>
           ))}
         </ul>
       ) : (
@@ -94,7 +94,7 @@ export const Collection = ({
   );
 };
 
-const Card = ({ image }: { image: IImage }) => {
+const Card = ({ image }: { image: IImage}) => {
   return (
     <li>
       <Link href={`/transformations/${image._id}`} className="collection-card">
