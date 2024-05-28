@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import User from "../database/models/user.model";
+import Run from "../database/models/run.model"
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
 
@@ -87,6 +88,25 @@ export async function updateCredits(userId: string, creditFee: number) {
     if(!updatedUserCredits) throw new Error("User credits update failed");
 
     return JSON.parse(JSON.stringify(updatedUserCredits));
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+// RUN HISTORY
+export async function runHistory(userId: string, type: string) {
+  try {
+    await connectToDatabase();
+
+    const run = await Run.create(
+      { author: userId, 
+        transformationType: type,
+        createdAt: new Date() }
+    )
+
+    if(!run) throw new Error("transformation run data save failed!");
+
+    return JSON.parse(JSON.stringify(run));
   } catch (error) {
     handleError(error);
   }

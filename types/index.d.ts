@@ -9,6 +9,11 @@ declare type CreateUserParams = {
     lastName: string;
     photo: string;
 };
+
+declare type CreateLoginHistoryParams = {
+  clerkId: string;
+  lastLogin: number;
+};
   
 declare type UpdateUserParams = {
    firstName: string;

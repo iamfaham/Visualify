@@ -1,4 +1,4 @@
-import mongoose, {Mongoose} from "mongoose";
+import mongoose, {Mongoose, Connection} from "mongoose";
 
 const  MONGODB_URL = process.env.MONGODB_URL
 
@@ -27,5 +27,23 @@ export const connectToDatabase = async () => {
 
     cached.conn = await cached.promise 
 
+    await dropUniqueIndexIfNeeded(cached.conn.connection);
+
     return cached.conn
 }
+
+
+const dropUniqueIndexIfNeeded = async (connection: Connection): Promise<void> => {
+    try {
+      const collection = connection.collection('runs');
+      const indexes = await collection.indexes();
+      const authorIndex = indexes.find(index => index.key && index.key.author === 1);
+  
+      if (authorIndex && authorIndex.unique) {
+        await collection.dropIndex('author_1');
+        console.log('Dropped unique index on author field.');
+      }
+    } catch (error) {
+      console.error('Error dropping index:', (error as Error).message);
+    }
+  };

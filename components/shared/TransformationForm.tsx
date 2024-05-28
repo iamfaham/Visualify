@@ -13,21 +13,13 @@ import {
   } from "@/components/ui/select"
   
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from "@/constants"
 import { CustomField } from "./CustomField"
 import { useEffect, useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
-import { updateCredits } from "@/lib/actions/user.actions"
+import { runHistory, updateCredits } from "@/lib/actions/user.actions"
 import MediaUploader from "./MediaUploader"
 import TransformedImage from "./TransformedImage"
 import { getCldImageUrl } from "next-cloudinary"
@@ -175,7 +167,8 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
     setNewTransformation(null)
 
     startTransition(async () => {
-        await updateCredits(userId, creditFee)  
+        await updateCredits(userId, creditFee)
+        await runHistory(userId, type)  
     })
   }
 

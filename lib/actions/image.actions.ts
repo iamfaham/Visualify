@@ -5,6 +5,7 @@ import { connectToDatabase } from "../database/mongoose"
 import { handleError } from "../utils"
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
+import Run from "../database/models/run.model";
 import { redirect } from "next/navigation";
 import { v2 as cloudinary } from "cloudinary"
 
@@ -180,3 +181,33 @@ export async function getUserImages({limit = 9, page = 1, userId}:
         handleError(error)
     }
 }
+
+//  GET USER RUNS
+export async function getUserRuns({limit = 9, page = 1 , userId}: 
+    {   limit?: number;
+        page: number;
+        userId: string;
+    }){
+        try {
+            await connectToDatabase();
+    
+            // const  skipAmount = (Number(page) - 1 ) * limit
+
+            const runs = await populateUser(Run.find({ author: userId }))
+                .sort({updatedAt: -1})
+                // .skip(skipAmount)
+                .limit(limit);
+
+            // console.log(runs)
+    
+            // const totalRuns = await Run.find({ author:userId }).countDocuments();
+    
+            return {
+                data: JSON.parse(JSON.stringify(runs)),
+                // totalPages: Math.ceil(totalRuns / limit),
+            }
+    
+        } catch (error) {
+            handleError(error)
+        }
+    }
