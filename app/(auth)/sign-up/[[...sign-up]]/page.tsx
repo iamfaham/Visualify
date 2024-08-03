@@ -6,17 +6,17 @@ const SignUpPage = () => {
   return (
     <SignUp path="/sign-up" 
       appearance={{
-      elements: {
-        formButtonPrimary: {
-          backgroundColor: '#5cbefb', // Cyan color
-          borderColor: '#5cbefb',     // Cyan color
-          color: '#ffffff',           // White text color
+        elements: {
+          formButtonPrimary: {
+            backgroundColor: '#5cbefb', // Cyan color
+            borderColor: '#5cbefb',     // Cyan color
+            color: '#ffffff',           // White text color
+          },
+          footerActionLink: {
+            color:'#5cbefb',
+          },
         },
-        footerActionLink: {
-          color:'#5cbefb',
-        },
-      },
-    }}
+      }}
     />
   )
 }
