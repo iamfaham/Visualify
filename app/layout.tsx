@@ -8,8 +8,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const IBMPlex = IBM_Plex_Sans({ subsets: ["latin"], weight:['400','500','600','700'], variable: '--font-ibm-plex' });
 
 export const metadata: Metadata = {
-  title: "Imaginify test",
-  description: "Ai powered",
+  title: "Visualify",
+  description: "Ai powered Photo Editor",
 };
 
 export default function RootLayout({

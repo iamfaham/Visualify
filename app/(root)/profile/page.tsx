@@ -8,16 +8,6 @@ import Header from "@/components/shared/Header";
 import { getUserImages, getUserRuns } from "@/lib/actions/image.actions";
 import { getUserById } from "@/lib/actions/user.actions";
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
 
 
 const Profile = async ({ searchParams }: SearchParamProps) => {
@@ -63,47 +53,6 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
             <h2 className="h2-bold text-dark-600">{images?.data.length}</h2>
           </div>
         </div>
-      </section>
-      <div className="py-10">
-        <Header title="Last 10 Runs" subtitle=""/>
-      </div>
-      <section>
-      
-        <Table>
-          <TableCaption>A list of your recent runs.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Transformation Type</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Credit Cost</TableHead>
-              {/* <TableHead className="text-right">Amount</TableHead> */}
-            </TableRow>
-          </TableHeader>
-          
-            {runs?.data.length > 0 ? (
-              <TableBody>                
-                {runs?.data.map((run:any) => (
-                  <TableRow key={String(run._id)}>
-                    <TableCell className="font-medium">{run.transformationType}</TableCell>
-                    <TableCell>{run.createdAt}</TableCell>
-                    <TableCell>1</TableCell>
-                    {/* <TableCell className="text-right">{run.transformationType}</TableCell> */}
-                  </TableRow>
-                ))} 
-              </TableBody>            
-            ) : (
-              <TableBody>
-                <p className="p-20-semibold">Empty List</p>
-              </TableBody>
-            )}
-
-          {/* <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3}>Total</TableCell>
-              <TableCell className="text-right">$2,500.00</TableCell>
-            </TableRow>
-          </TableFooter> */}
-        </Table>
       </section>
 
       <section className="mt-8 md:mt-14">

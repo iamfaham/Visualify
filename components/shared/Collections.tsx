@@ -17,10 +17,8 @@ import { formUrlQuery } from "@/lib/utils";
 
 import { Button } from "../ui/button";
 
-import { Search } from "./Search";
 
 export const Collection = ({
-  hasSearch = false,
   images,
   totalPages = 1,
   page,
@@ -50,7 +48,6 @@ export const Collection = ({
     <>
       <div className="collection-heading">
         <h2 className="h2-bold text-dark-600">Recent Edits</h2>
-        {hasSearch && <Search />}
       </div>
 
       {images.length > 0 ? (
@@ -81,7 +78,7 @@ export const Collection = ({
             </p>
 
             <Button
-              className="button w-32 bg-purple-gradient bg-cover text-white"
+              className="button w-32 button-gradient bg-cover text-white"
               onClick={() => onPageChange("next")}
               disabled={Number(page) >= totalPages}
             >

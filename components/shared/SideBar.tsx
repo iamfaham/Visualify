@@ -13,8 +13,9 @@ const SideBar = () => {
   return (
     <aside className='sidebar'>
         <div className='flex size-full flex-col gap-4'>
-            <Link href='/'>
-                <Image src="/assets/images/logo-text.svg" alt='logo' width={180} height={28}/>
+            <Link href='/home' className='flex items-center'>
+                <Image src="/logo.png" alt='logo' width={50} height={20}/>
+                <p className='logo-gradient text-4xl ml-4'>Visualify</p>
             </Link>
 
             <nav className="sidebar-nav">
@@ -24,7 +25,7 @@ const SideBar = () => {
                             const isActive = link.route === pathname
                             return (
                                 <li key={link.route} className={`sidebar-nav_element group 
-                                ${ isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'}`}>
+                                ${ isActive ? 'button-gradient text-white' : 'text-gray-700'}`}>
                                     <Link href={link.route} className='sidebar-link'>
                                         <Image src={link.icon} alt='logo' width={24} height={24} className={`${isActive && 'brightness-200'}`} />
                                         {link.label}
@@ -38,7 +39,7 @@ const SideBar = () => {
                             const isActive = link.route === pathname
                             return (
                                 <li key={link.route} className={`sidebar-nav_element group 
-                                ${ isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'}`}>
+                                ${ isActive ? 'button-gradient text-white' : 'text-gray-700'}`}>
                                     <Link href={link.route} className='sidebar-link'>
                                         <Image src={link.icon} alt='logo' width={24} height={24} className={`${isActive && 'brightness-200'}`} />
                                         {link.label}
@@ -52,7 +53,7 @@ const SideBar = () => {
                 
                 </SignedIn>
                 <SignedOut>
-                        <Button asChild className='button bg-purple-gradient bg-cover'>
+                        <Button asChild className='button button-gradient bg-cover'>
                             <Link href='/sign-in'>Login</Link>
                         </Button>
                 </SignedOut>

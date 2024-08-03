@@ -14,12 +14,12 @@ const MobileNav = () => {
     const pathname = usePathname()
   return (
     <header className='header'>
-        <Link href='/' className='flex items-center gap-2 md:py-2'>
+        <Link href='/home' className='flex items-center gap-2 md:py-2'>
             <Image 
-                src='/assets/images/logo-text.svg' 
+                src='/logo.png' 
                 alt='logo'
-                width={180}
-                height={28}
+                width={40}
+                height={20}
             />
         </Link>
 
@@ -36,8 +36,8 @@ const MobileNav = () => {
                     <SheetContent className='sheet-content sm:w-64'>
                         <>
                             <Image 
-                                src='/assets/images/logo-text.svg' alt='logo'
-                                width={152} height={23}
+                                src='/logo.png' alt='logo'
+                                width={40} height={20}
                             />
                             <ul className='header-nav_elements'>
                                 {navLinks.slice(0,6).map((link) => {
@@ -56,23 +56,11 @@ const MobileNav = () => {
                 </Sheet>
             </SignedIn>
             <SignedOut>
-                    <Button asChild className='button bg-purple-gradient bg-cover'>
-                        <Link href='/sign-in'>Login</Link>
-                    </Button>
+                <Button asChild className='button button-gradient bg-cover'>
+                    <Link href='/sign-in'>Login</Link>
+                </Button>
             </SignedOut>
         </nav>
-        {/* <Sheet>
-            <SheetTrigger>Open</SheetTrigger>
-            <SheetContent>
-                <SheetHeader>
-                    <SheetTitle>Are you absolutely sure?</SheetTitle>
-                    <SheetDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
-                    </SheetDescription>
-                </SheetHeader>
-            </SheetContent>
-        </Sheet> */}
     </header>
   )
 }

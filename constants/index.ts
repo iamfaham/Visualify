@@ -1,7 +1,9 @@
+import { Label } from "@headlessui/react";
+
 export const navLinks = [
     {
       label: "Home",
-      route: "/",
+      route: "/home",
       icon: "/assets/icons/home.svg",
     },
     {
@@ -159,7 +161,17 @@ export const navLinks = [
       },
       icon: "filter.svg",
     },
+    generativeReplace: {
+      type: "generativeReplace",
+      title: "Generative Replace",
+      subTitle: "Replace parts of an image with generated content using AI",
+      config: {
+        generativeReplace: { prompt: "", removeShadow: true },
+      },
+      icon: "replace.svg",
+    },
   };
+  
   
   export const aspectRatioOptions = {
     "1:1": {

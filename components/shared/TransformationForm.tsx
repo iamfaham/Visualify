@@ -93,7 +93,7 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
                 const newImage = await addImage({
                     image: imageData,
                     userId,
-                    path:'/'
+                    path:'/home'
                 })
                 if (newImage){
                     form.reset()
@@ -293,7 +293,7 @@ const TransformationForm = ({action, data = null , userId, type, creditBalance, 
                 className="submit-button capitalize"
                 disabled={isSubmitting}
             >
-                {isSubmitting ? 'Submitting...' : 'Save Image'}
+                {isSubmitting || isTransforming ? 'Submitting...' : 'Save Image'}
             </Button>
             </div>
         </form>
