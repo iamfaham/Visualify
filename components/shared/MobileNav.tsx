@@ -43,8 +43,8 @@ const MobileNav = () => {
                                 {navLinks.slice(0,6).map((link) => {
                                 const isActive = link.route === pathname
                                 return (
-                                    <li key={link.route} className={`${ isActive && 'gradient-text'} p-18 flex whitespace-nowrap text-dark-700`}>
-                                        <Link href={link.route} className='sidebar-link cursor-pointer'>
+                                    <li key={link.route} className={`${ isActive && 'button-gradient rounded-full w-full text-white'} p-18 flex whitespace-nowrap text-dark-700`}>
+                                        <Link href={link.route} className='sidebar-link cursor-pointer z-10'>
                                             <Image src={link.icon} alt='logo' width={24} height={24} />
                                             {link.label}
                                         </Link>

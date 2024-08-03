@@ -11,6 +11,7 @@ const Home: FC = () => {
             <ul className="flex space-x-4">
               <li><Link href="/sign-in">Sign in</Link></li>
               <li><Link href="/sign-up">Sign Up</Link></li>
+              <li><Link href='/home'>Home</Link></li>
             </ul>
           </nav>
         </div>
