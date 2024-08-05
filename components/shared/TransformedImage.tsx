@@ -20,6 +20,8 @@ const TransformedImage = ({image, type, title, transformationConfig, isTransform
         ...transformationConfig
     }), title )
   }
+
+  
     return (
     <div className='flex flex-col gap-4'>
         <div className='flex-between'>
