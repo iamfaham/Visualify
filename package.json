@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.1.0",
+    "@clerk/nextjs": "^5.2.12",
     "@cloudinary/url-gen": "^1.20.0",
     "@headlessui/react": "^2.1.2",
     "@hookform/resolvers": "^3.4.2",
