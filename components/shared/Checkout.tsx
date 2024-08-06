@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Dialog } from "@headlessui/react";
+import { Dialog, DialogTitle } from "@headlessui/react";
 import { useToast } from "@/components/ui/use-toast";
 import { createTransaction } from "@/lib/actions/transaction.action";
 import { Button } from "../ui/button";
@@ -60,7 +60,7 @@ const Checkout = ({
 
     await createTransaction(transaction);
     
-    router.push('/profile')
+    router.push('/home')
   };
 
   return (
@@ -76,9 +76,9 @@ const Checkout = ({
         <div className="fixed inset-0 bg-black opacity-30" aria-hidden="true"></div>
         <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
           <div className="px-4 py-5 sm:p-6">
-            <Dialog.Title className="text-lg leading-6 font-medium text-gray-900">
+            <DialogTitle className="text-lg leading-6 font-medium text-gray-900">
               Confirm Purchase
-            </Dialog.Title>
+            </DialogTitle>
             <div className="mt-2">
               <p className="text-sm text-gray-500">
                 This action will add 20 credits to your account at no cost. 
