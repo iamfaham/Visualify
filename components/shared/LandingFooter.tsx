@@ -8,13 +8,13 @@ const LandingFooter = () => {
       <div className="container mx-auto text-center">
         <p>Project by Syed Mohammed Faham.</p>
         <div className="flex justify-center space-x-4 mt-4">
-          <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+          <a href="https://x.com/iamfaham" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
             <FaXTwitter size={24} />
           </a>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+          <a href="https://linkedin.com/in/iamfaham" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
             <FaLinkedin size={24} />
           </a>
-          <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+          <a href="https://github.com/iamfaham" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
             <FaGithub size={24} />
           </a>
         </div>

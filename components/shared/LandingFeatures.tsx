@@ -42,7 +42,7 @@ const LandingFeatures = () => {
             </div>
             <div className="md:w-1/2">
               <h4 className="text-2xl font-bold mb-2">Image Restore</h4>
-              <p>Bring old and damaged photos back to life with our advanced image restoration feature. Remove scratches, enhance details, and revive your cherished memories.</p>
+              <p>Bring damaged photos back to life with our advanced image restoration feature. Enhance details and revive your cherished memories.</p>
             </div>
           </div>
         </div>
