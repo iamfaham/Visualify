@@ -26,7 +26,7 @@ import { useRouter } from "next/navigation"
 import { InsufficientCreditsModel } from "./InsufficientCreditsModel"
 
 export const formSchema = z.object({
-    title: z.string(),
+    title: z.string().nonempty("Image title is required"),
     aspectRatio: z.string().optional(),
     color: z.string().optional(),
     prompt: z.string().optional(),
@@ -42,7 +42,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     const [transformationConfig, setTransformationConfig] = useState(config)
     const [isPending, startTransition] = useTransition()
     const [isTransformed, setIsTransformed] = useState(false)
-    const [hasDownload, setHasDownload] = useState(false) // Manage hasDownload as state
+    const [hasDownload, setHasDownload] = useState(false)
     const router = useRouter()
 
     const initialValues = data && action === 'Update' ? {
@@ -173,7 +173,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     }, [image, transformationType.config, type])
 
     useEffect(() => {
-        setHasDownload(isTransformed) // Update hasDownload based on isTransformed
+        setHasDownload(isTransformed)
     }, [isTransformed])
 
     return (
@@ -185,7 +185,9 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                     name="title"
                     formLabel="Image Title"
                     className="w-full"
-                    render={({ field }) => <Input {...field} className="input-field" />}
+                    render={({ field }) => (
+                        <Input {...field} className="input-field" />
+                    )}
                 />
                 {type === "fill" && (
                     <CustomField
@@ -199,7 +201,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                             }}
                                 value={field.value}
                             >
-                                <SelectTrigger className="select-field">
+                                <SelectTrigger className="input-field">
                                     <SelectValue placeholder="Select size" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -275,7 +277,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                         isTransforming={isTransforming}
                         setIsTransforming={setIsTransforming}
                         transformationConfig={transformationConfig}
-                        hasDownload={hasDownload} // Pass updated hasDownload value
+                        hasDownload={hasDownload}
                     />
                 </div>
 
