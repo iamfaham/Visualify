@@ -12,7 +12,7 @@ const LandingFeatures = () => {
             </div>
             <div className="md:w-1/2">
               <h4 className="text-2xl font-bold mb-2">Generative Fill</h4>
-              <p>Use AI to fill in missing parts of your images seamlessly. Whether it's removing unwanted elements or extending backgrounds, our generative fill makes it look natural.</p>
+              <p>Use AI to fill in missing parts of your images seamlessly. Whether it&apos;s removing unwanted elements or extending backgrounds, our generative fill makes it look natural.</p>
             </div>
           </div>
 
